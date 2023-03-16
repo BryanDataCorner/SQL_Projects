@@ -7,7 +7,7 @@ Welcome to my SQL projects repository! Here, you will find various projects rang
 ### Project 1 - Exploring COVID 19 Data
 [Link to Project 1](/project1)
 
-In this project, I explored COVID 19 data from [https://ourworldindata.org/covid-deaths](https://ourworldindata.org/covid-deaths) to identify the trend of COVID 19 in Southeast Asian countries compared to the rest of the world..
+In this project, I explored COVID 19 data from [Our World in Data](https://ourworldindata.org/covid-deaths) to identify the trend of COVID 19 in Southeast Asian countries compared to the rest of the world..
 
 <!--
 ## Target Projects
