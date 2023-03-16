@@ -10,7 +10,7 @@ The data in this dataset was collected from January 8, 2020 to March 7, 2023. Th
 The data was collected from [Our World in Data](https://ourworldindata.org/covid-deaths).
 
 ## Data Format
-The dataset is provided in CSV. The data is organized into one table with 67 columns and 293,434 rows.
+The dataset is provided in CSV, XSLX, and JSON. The data is organized into one table with 67 columns and 293,434 rows.
 
 ## Data Preparation
 After downloading the dataset, I separated it into two separate files: one for COVID-19 deaths and one for COVID-19 vaccinations. This was simply to make it easier for me to work with and to demonstrate my ability to use joins in SQL queries. You can download the files I used in my [Google Drive](https://drive.google.com/drive/folders/1Hc-GoS5zeI57q_49pmjo_-2ABEnDkCfB?usp=sharing)
