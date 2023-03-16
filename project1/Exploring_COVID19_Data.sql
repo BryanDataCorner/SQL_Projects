@@ -1,3 +1,9 @@
+/*
+COVID 19 DATA EXPLORATION
+
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating views, Converting Data Types 
+*/
+
 
 -- Query to show the full content of the covid_deaths and covid_vaccinations tables, ordered by location and date
 -- Note: Both tables have columns for iso_code, continent, location, and date, which will allow us to join them later in the analysis.
@@ -193,3 +199,37 @@ SELECT *
 	, (RollingCount_Cases / population * 100) AS Percent_Covid_Cases
 FROM #TimeSeriesAnalysis
 ORDER BY location, date
+
+
+
+
+
+-- CREATING VIEW FOR FUTURE VISUALIZATION
+CREATE VIEW TimeSeriesAnalysis AS
+SELECT death.continent
+	, death.location
+	, death.date
+	, death.population
+	, vaccine.new_vaccinations
+	, death.new_deaths
+	, death.new_cases
+	, SUM(CAST(vaccine.new_vaccinations as bigint)) OVER (
+		PARTITION BY death.location
+		ORDER BY death.location
+			, death.date
+		) AS RollingCount_PeopleVaccinated
+	, SUM(CAST(death.new_deaths as bigint)) OVER (
+		PARTITION BY death.location
+		ORDER BY death.location
+			, death.date
+		) AS RollingCount_Deaths
+		, SUM(CAST(death.new_cases as bigint)) OVER (
+		PARTITION BY death.location
+		ORDER BY death.location
+			, death.date
+		) AS RollingCount_Cases
+FROM PortfolioProject1.dbo.CovidDeaths AS death
+	INNER JOIN PortfolioProject1.dbo.CovidVaccinations AS vaccine
+		ON death.location = vaccine.location
+		AND death.date = vaccine.date
+WHERE death.continent IS NOT NULL
