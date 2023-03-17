@@ -25,8 +25,8 @@ ORDER BY location, date
 -- Calculates the death percentage (total deaths divided by total cases) for each COUNTRY and displays the results in descending order of total cases.
 -- Data can be verified against the World Health Organization's COVID-19 Dashboard: https://covid19.who.int/
 SELECT Location
-	, MAX(CAST(total_deaths AS float)) AS Total_Deaths
-	, MAX(CAST(total_cases AS float)) AS Total_Cases
+	, MAX(CAStotal_deaths AS float)) AS Total_Deaths
+	, MAX(CAST(total_cases AST( float)) AS Total_Cases
 	, CASE
 		WHEN MAX(CAST(total_cases AS float)) = 0 THEN 0
 		ELSE MAX(CAST(total_deaths AS float)) / MAX(CAST(total_cases AS float)) * 100 
@@ -54,7 +54,6 @@ FROM PortfolioProject1.dbo.CovidDeaths AS death
 		INNER JOIN PortfolioProject1.dbo.CovidVaccinations AS vaccine
 			ON death.location = vaccine.location
 			AND death.date = vaccine.date
-		--WHERE death.continent IS NOT NULL
 WHERE death.continent IS NOT NULL
 GROUP BY death.location, vaccine.gdp_per_capita
 ORDER BY Total_Cases DESC
@@ -63,7 +62,7 @@ ORDER BY Total_Cases DESC
 
 
 
--- LOOKING AT TOTAL CASES vs POPULATION
+-- LOOKING AT TOTAL CASES & TOTAL DEATHS vs POPULATION
 -- Calculates the total number of cases and deaths for each location and their corresponding population.
 -- Shows what percentage of the population was infected and died due to COVID-19.
 SELECT Location
@@ -182,7 +181,7 @@ SELECT death.continent
 		ORDER BY death.location
 			, death.date
 		) AS RollingCount_Deaths
-		, SUM(CAST(death.new_cases as bigint)) OVER (
+	, SUM(CAST(death.new_cases as bigint)) OVER (
 		PARTITION BY death.location
 		ORDER BY death.location
 			, death.date
@@ -223,7 +222,7 @@ SELECT death.continent
 		ORDER BY death.location
 			, death.date
 		) AS RollingCount_Deaths
-		, SUM(CAST(death.new_cases as bigint)) OVER (
+	, SUM(CAST(death.new_cases as bigint)) OVER (
 		PARTITION BY death.location
 		ORDER BY death.location
 			, death.date
